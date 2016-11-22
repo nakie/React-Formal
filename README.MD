@@ -1,6 +1,6 @@
 React Formal
 ============
 
-Pathetic attempt at a React Form Component Library.
+Pathetic attempt at a Reuseable React Form Component Library/Module Thingy.
 
 <!> Under Development <!>

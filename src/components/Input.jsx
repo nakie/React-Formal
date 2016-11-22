@@ -59,7 +59,7 @@ var MyInput = React.createClass({
          *
          */
         newState[ event.target.name ] = event.target.value;
-        //console.log( newState );
+        console.log( newState );
         this.setState( newState );
 
 		// var key = event.target.name;
