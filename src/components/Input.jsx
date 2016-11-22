@@ -112,9 +112,12 @@ var MyInput = React.createClass({
 
         if( typeof( this.state[ this.props.name ]) != 'undefined' ){
             return this.state[ this.props.name ];
-        } else {
+        } else if ( typeof( this.props.value ) != 'undefined' ) {
             return this.props.value;
-        }
+        } else {
+        	return '';
+		}
+
     },
 
     isDisabled: function(){
