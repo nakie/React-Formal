@@ -1,15 +1,6 @@
 var React = require( 'react' );
 
-// var Form        = require( 'formsy-react' ).Form;
-// Attempting a replacement for import { Form } from 'formsy-react';
-// This should get the "Form" variable from the formsy-react module/projct
-// <Form /> is a Form Component via Formsy-react
-
-
 var RadioBtn = React.createClass({
-
-    // Add the Formsy Mixin
-    // mixins: [ Formsy.Mixin ],
 
     changeValue: function( event ) {
 

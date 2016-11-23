@@ -1,5 +1,4 @@
 var React = require( 'react' );
-// var Formsy = require( 'formsy-react' );
 
 var MyLabel = require( './Label.jsx' );
 
@@ -22,9 +21,6 @@ var suffix = {
 };
 
 var MyInput = React.createClass({
-
-	// Add the Formsy Mixin
-	mixins: [ Formsy.Mixin ],
 
 	// setValue() will set the value of the component, which in
 	// turn will validate it and the rest of the form
