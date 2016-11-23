@@ -1,5 +1,5 @@
 var React = require( 'react' );
-var Formsy = require( 'formsy-react' );
+// var Formsy = require( 'formsy-react' );
 
 var MyLabel = require( './Label.jsx' );
 

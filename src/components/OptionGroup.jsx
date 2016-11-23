@@ -21,9 +21,9 @@ var OptionGroup = React.createClass({
 
 	}, // END function getTitle()
 
-    changeValue: function(e){
+    changeValue: function( e ){
 
-        if( typeof( this.props.changeValue) != 'undefined' ){
+        if( typeof( this.props.changeValue ) != 'undefined' ){
             this.props.changeValue( e.target.value );
         }
 
@@ -122,7 +122,7 @@ var OptionGroup = React.createClass({
 	render: function() {
 
         var className = 'optionGroup' +
-            ( this.props.className ?  ' ' + this.props.className: '' )
+            ( this.props.className ?  ' ' + this.props.className: '' );
 
 		return (
 
