@@ -1,8 +1,8 @@
 const path = require( 'path' );
 const webpack = require( 'webpack' );
-const merge = require( 'webpack-merge' );
+// const merge = require( 'webpack-merge' );
 
-const common = {
+module.exports = {
 
     entry: './src/index.js',
     output: {
@@ -33,29 +33,5 @@ const common = {
             }
         })
     ],
-}; // END common {}
+};
 
-const development = {};
-
-const examples  = {};
-
-const production = {};
-
-var config;
-
-// Detect how npm is run and branch based on that
-switch( process.env.npm_lifecycle_event ) {
-    case 'prod':
-        config = merge( common, prodConfig );
-
-        console.log( "Production Build" );
-
-        break;
-
-    default:
-        //config = merge( common, devConfig );
-        console.log( process.env.npm_lifecycle_event );
-
-} // END switch( process.env.npm_lifecycle_event )
-
-module.exports = config;

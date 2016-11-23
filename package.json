@@ -8,7 +8,9 @@
     "url": "https://github.com/nakie/react-formal.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-prod": "webpack --progress -p --config webpack.prod.config.js",
+    "build-dev": "webpack --progress -p"
   },
   "author": "Nathan Crews",
   "license": "MIT",
