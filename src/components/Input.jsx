@@ -78,7 +78,7 @@ var MyInput = React.createClass({
         // use Title as placeholder
 		if( showLabel === false ){
 		    if( typeof( props.placeholderValue ) == 'undefined' ){
-                props.placeholderValue = this.props.title;
+                props.placeholder = this.props.title;
             }
 		}
 
