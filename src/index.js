@@ -4,6 +4,7 @@ import Option         from './components/Option';
 import Checkbox       from './components/Checkbox';
 import Radio          from './components/Radio';
 import OptionGroup    from './components/Option';
+import Textarea    from './components/Textarea';
 
 
 module.exports = {
@@ -12,5 +13,6 @@ module.exports = {
     Label,
     Option,
     Radio,
-    OptionGroup
+    OptionGroup,
+    Textarea
 };

@@ -14,13 +14,48 @@ a.active {
     color: hsl(20, 50%, 50%);
 }
 
+.breadcrumbs, .main-nav{
+    list-style-type: none;
+}
+
+.main-nav li {
+    margin-bottom:.7em;
+}
+
+.breadcrumbs li {
+    display:inline-block;
+}
+
+.breadcrumbs > li:not(:first-child):before {
+    content:  ' » ';
+}
+
 .breadcrumbs a {
-    text-decoration: none;
+
 }
 
 .inputGroup{
-    margin-top:1em;
+    margin-top:2em;
 }
-.inputGroup, label {
-    display:block;
+
+.inputGroup label {
+    width: 160px;
+    display: block;
+    float: left;
+}
+
+.inputGroup p.help-block {
+    font-size:14px;
+    /*font-style: italic ;*/
+    padding-left:1em;
+    color: #666;
+}
+
+.inputGroup.required label:after {
+    content: " *";
+    color: #f0ad4e;
+}
+
+button{
+    margin-top:2em;
 }

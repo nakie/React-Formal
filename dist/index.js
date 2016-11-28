@@ -20,6 +20,10 @@ var _Radio = require('./components/Radio');
 
 var _Radio2 = _interopRequireDefault(_Radio);
 
+var _Textarea = require('./components/Textarea');
+
+var _Textarea2 = _interopRequireDefault(_Textarea);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = {
@@ -28,5 +32,6 @@ module.exports = {
     Label: _Label2.default,
     Option: _Option2.default,
     Radio: _Radio2.default,
-    OptionGroup: _Option2.default
+    OptionGroup: _Option2.default,
+    Textarea: _Textarea2.default
 };

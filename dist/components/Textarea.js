@@ -22,8 +22,8 @@ var suffix = {
     reset: "Btn"
 };
 
-var MyInput = React.createClass({
-    displayName: 'MyInput',
+var MyTextareat = React.createClass({
+    displayName: 'MyTextareat',
 
 
     _getID: function _getID() {
@@ -76,7 +76,8 @@ var MyInput = React.createClass({
         var _props = this.props,
             className = _props.className,
             helpText = _props.helpText,
-            props = _objectWithoutProperties(_props, ['className', 'helpText']);
+            value = _props.value,
+            props = _objectWithoutProperties(_props, ['className', 'helpText', 'value']);
 
         // Set a specific className for input group
 
@@ -106,7 +107,7 @@ var MyInput = React.createClass({
                 name: elementID,
                 title: this.props.title
             }),
-            React.createElement('input', _extends({
+            React.createElement('textarea', _extends({
                 id: elementID,
                 name: this.props.name
             }, props)),
@@ -116,4 +117,4 @@ var MyInput = React.createClass({
     }
 });
 
-module.exports = MyInput;
+module.exports = MyTextareat;

@@ -82,10 +82,7 @@ var Checkbox = React.createClass({
                 null,
                 React.createElement("input", {
                     type: 'checkbox',
-                    name: this.props.name,
-                    onChange: this.changeValue,
-                    disabled: this.props.disabled,
-                    value: this.props.value
+                    name: this.props.name
                 }),
                 this.toggle(),
                 this.props.title

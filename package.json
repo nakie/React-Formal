@@ -9,9 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "webpack --progress -p --config webpack.prod.config.js",
     "dev": "webpack --progress -d --config webpack.dev.config.js",
-    "babel": "babel ./src/ -d ./dist/",
+    "prod": "babel ./src/ -d ./dist/",
     "demo": "webpack-dev-server --progress --color --config ./demo/webpack.config.js --content-base demo"
   },
   "author": "Nathan Crews",

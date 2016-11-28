@@ -4,6 +4,7 @@ var ReactDOM = require( 'react-dom' );
 var ReactFormal = require( 'react-formal' );
 
 var FormalInput = ReactFormal.Input;
+var FormalTextarea = ReactFormal.Textarea;
 
 var FormalInputDuo = require( 'react-formal' ).Input;
 
@@ -21,18 +22,41 @@ var BasicForm = React.createClass({
         // console.log( FormalInput );
         // console.log( FormalInputDuo );
         return(
-            <form onSubmit={ this.handleSubmit }>
+            <form onSubmit={ this.handleSubmit } >
 
                 <FormalInput
                     type    = "text"
-                    name    = "basicText"
+                    name    = "basic"
                     title   = "Text Field"
                 />
 
                 <FormalInput
-                    type    = "Color"
-                    name    = "basicColor"
-                    title   = "Color Field"
+                    type    = "text"
+                    name    = "help"
+                    title   = "With Help"
+                    helpText= 'Field with some help text provided'
+                />
+
+                <FormalInput
+                    type    = "text"
+                    name    = "required"
+                    title   = "Required"
+                    helpText = "This field is flaged as required but no JS validation applied"
+                    required = { true }
+                />
+
+                <FormalInput
+                    type    = "text"
+                    name    = "customClass"
+                    title   = "Custom Class"
+                    helpText = "inspect element to see additional class"
+                    className = 'myCustomClass'
+                />
+
+
+                <FormalTextarea
+                    name = "myTextarea"
+                    title = "A Textarea"
                 />
 
                 <FormalInput
@@ -45,12 +69,6 @@ var BasicForm = React.createClass({
                     type    = "email"
                     name    = "basicEmail"
                     title   = "Email Field"
-                />
-
-                <FormalInput
-                    type    = "file"
-                    name    = "basicFile"
-                    title   = "File Field"
                 />
 
                 <button

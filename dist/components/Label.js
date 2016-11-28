@@ -1,34 +1,36 @@
-'use strict';
+"use strict";
 
 var React = require('react');
 
 var MyLabel = React.createClass({
-  displayName: 'MyLabel',
+    displayName: "MyLabel",
 
 
-  propTypes: {
-    showLabel: React.PropTypes.bool
-  },
+    propTypes: {
+        showLabel: React.PropTypes.bool
+    },
 
-  getDefaultProps: function getDefaultProps() {
-    return {
-      showLabel: true
-    };
-  },
+    // Initialize showLabel to true;
+    getDefaultProps: function getDefaultProps() {
+        return {
+            showLabel: true
+        };
+    }, // END getDefaultProps()
 
-  render: function render() {
+    render: function render() {
 
-    if (this.props.showLabel === true) {
+        // Display HTML Label
+        if (this.props.showLabel === true) {
+            return React.createElement(
+                "label",
+                { htmlFor: this.props.name },
+                this.props.title
+            );
+        } else {
+            return null;
+        }
+    } // END render()
 
-      return React.createElement(
-        'label',
-        { htmlFor: this.props.name },
-        this.props.title
-      );
-    } else {
-      return null;
-    }
-  }
-});
+}); // END MyLabel
 
 module.exports = MyLabel;

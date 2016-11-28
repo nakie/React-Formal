@@ -75,9 +75,6 @@ var Checkbox = React.createClass({
                     <input
                         type	        = { 'checkbox' }
                         name	        = { this.props.name }
-                        onChange        = { this.changeValue }
-                        disabled        = { this.props.disabled }
-                        value           = { this.props.value }
                     />
                     { this.toggle() }
                     { this.props.title }
