@@ -76,7 +76,8 @@ var MyInput = React.createClass({
         var _props = this.props,
             className = _props.className,
             helpText = _props.helpText,
-            props = _objectWithoutProperties(_props, ['className', 'helpText']);
+            showLabel = _props.showLabel,
+            props = _objectWithoutProperties(_props, ['className', 'helpText', 'showLabel']);
 
         // Set a specific className for input group
 
@@ -92,7 +93,7 @@ var MyInput = React.createClass({
 
         // if no label is shown and no placeholder provided
         // use Title as placeholder
-        if (this.props.showLabel === false) {
+        if (showLabel === false) {
             if (typeof props.placeholderValue == 'undefined') {
                 props.placeholderValue = this.props.title;
             }
