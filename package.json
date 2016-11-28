@@ -9,8 +9,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-prod": "webpack --progress -p --config webpack.prod.config.js",
-    "build-dev": "webpack --progress -p"
+    "prod": "webpack --progress -p --config webpack.prod.config.js",
+    "dev": "webpack --progress -d --config webpack.dev.config.js",
+    "babel": "babel ./src/ -d ./dist/",
+    "demo": "webpack-dev-server --progress --color --config ./demo/webpack.config.js --content-base demo"
   },
   "author": "Nathan Crews",
   "license": "MIT",
@@ -23,9 +25,7 @@
     "babel-preset-stage-2": "^6.18.0",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
-    "react-hot-loader": "^3.0.0-beta.6",
     "webpack": "^1.13.3",
-    "webpack-dev-middleware": "^1.8.4",
-    "webpack-hot-middleware": "^2.13.2"
+    "webpack-node-externals": "^1.5.4"
   }
 }

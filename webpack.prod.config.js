@@ -2,8 +2,12 @@ const path = require( 'path' );
 const webpack = require( 'webpack' );
 // const merge = require( 'webpack-merge' );
 
+const nodeExternals = require( 'webpack-node-externals' );
+
 module.exports = {
 
+    target: 'node',
+    externals: [ nodeExternals() ],
     entry: './src/index.js',
     output: {
         path: path.join( __dirname, 'dist' ),

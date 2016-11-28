@@ -1,6 +1,6 @@
 var React = require( 'react' );
 
-var MyLabel = require( './Label.jsx' );
+var MyLabel = require( './Label' );
 
 var suffix = {
 	
@@ -22,110 +22,6 @@ var suffix = {
 
 var MyInput = React.createClass({
 
-	// setValue() will set the value of the component, which in
-	// turn will validate it and the rest of the form
-
-	validateOnBlur: function( event ){
-
-		if( this.getErrorMessage() != null ){
-			this.setValue( event.currentTarget.value );
-		}else{
-			if( this.isValidValue( event.target.value )){
-				this.setValue( event.target.value );
-			}else{
-				this.setState({
-					_value: event.currentTarget.value,
-					_isPristine: false
-				});
-			}
-		}
-	},
-
-	changeValue: function( event ){
-
-        //console.log( "event target" + event.target.name );
-
-        var newState = {};
-
-        /** [ event.target.name ] syntax below does not work in IE
-         * this.setState( { [event.target.name]: event.target.value } );
-         *
-         * alteraning to use square bracket notation of reference/setting
-         * an object key works across browsers..
-         *
-         */
-        newState[ event.target.name ] = event.target.value;
-        console.log( newState );
-        this.setState( newState );
-
-		// var key = event.target.name;
-        // this.setState( { key: event.target.value } );
-
-        if( this.props.validateOnBlur === true ){
-
-            this.validateOnBlur( event );
-            
-        } else {
-
-            this.setValue( event.currentTarget[ 'value' ]);
-
-        }
-
-        if( typeof( this.props.changeValue ) == 'undefined' ){
-
-            // if( this.props.validateOnBlur === true ){
-            //     this.validateOnBlur( event );
-            // } else {
-            //
-            //     this.setValue( event.currentTarget[ 'value' ]);
-            //
-            // }
-
-        } else{
-
-            this.props.changeValue( event.target.value, this.props.modelGroup, this.props.modelValue, event );
-
-        }
-	},
-
-    blurValue: function (event) {
-        if( this.props.validateOnBlur === true ) {
-            this.setValue(event.currentTarget.value);
-        }
-    },
-
-    keyDown: function (event){
-
-        if( this.props.validateOnBlur === true ) {
-            if (event.keyCode == '13') {
-                this.setValue(event.currentTarget.value);
-            }
-        }
-
-    },
-
-    showValue: function(){
-
-        if( typeof( this.state[ this.props.name ]) != 'undefined' ){
-            return this.state[ this.props.name ];
-        } else if ( typeof( this.props.value ) != 'undefined' ) {
-            return this.props.value;
-        } else {
-        	return '';
-		}
-
-    },
-
-    isDisabled: function(){
-
-        // console.log( "Disabled: " + this.props.disabled );
-
-        if( this.props.disabled == true ){
-            return true;
-        }
-
-        return false;
-    },
 
 	render: function(){
 		
@@ -135,14 +31,16 @@ var MyInput = React.createClass({
 		// passed to the input. showError() is true when the
 		// value typed is invalid
 		var className = 'inputGroup' +
-            ( this.props.className ?  ' ' + this.props.className: '' ) +
-			( this.showRequired() ? ' required' : '' ) +
-            ( this.showError() ? ' error' : '' );
+            ( this.props.className ?  ' ' + this.props.className: '' );
+			// ( this.showRequired() ? ' required' : '' ) +
+            //( this.showError() ? ' error' : '' );
 
 		// An error message is returned ONLY if the component is invalid
 		// or the server has returned an error message
-		var errorMessage = this.getErrorMessage();
+		//var errorMessage = this.getErrorMessage();
 
+        // errorMesage THIS NEEDS TO BE REDEFINED
+        var errorMessage = '';
 
 		var helpText = null;
 
@@ -165,7 +63,7 @@ var MyInput = React.createClass({
 
 		var isRequired = false;
 
-		if( this.props.required == true ){
+		if( this.props.required === true ){
 			isRequired = "required";
 		}
 
@@ -180,30 +78,18 @@ var MyInput = React.createClass({
 		return (
 
 			<div className = { className }>
-
-			<MyLabel
-				showLabel 	= { this.props.showLabel }
-				name 		= { elementID }
-				title 		= { this.props.title } 
-			/>
-
-			<input
-				id          = { elementID }
-				type        = { this.props.type || 'text' }
-				name        = { this.props.name }
-				onChange    = { this.changeValue }
-				value       = { this.showValue() }
-				placeholder = { placeholderValue }
-				required    = { isRequired }
-				disabled    = { this.props.disabled }
-				onBlur		= { this.blurValue }
-				onKeyDown	= { this.keyDown }
-			/>
-
-			<span className='validation-error'>{ errorMessage }</span>
-
-			{ helpText }
-
+                <MyLabel
+                    showLabel 	= { this.props.showLabel }
+                    name 		= { elementID }
+                    title 		= { this.props.title }
+                />
+			    <input
+                    id          = { elementID }
+                    type        = { this.props.type || 'text' }
+                    name        = { this.props.name }
+                      placeholder = { placeholderValue }
+                />
+			    <span className='validation-error'>{ errorMessage }</span>
 			</div>
 
 		);
