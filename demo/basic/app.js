@@ -1,12 +1,19 @@
-var React = require( 'react' );
-var ReactDOM = require( 'react-dom' );
+var React       = require( 'react' );
+var ReactDOM    = require( 'react-dom' );
+
+var states      = require( '../states' );
 
 var ReactFormal = require( 'react-formal' );
 
-var FormalInput = ReactFormal.Input;
-var FormalTextarea = ReactFormal.Textarea;
+var FormalInput         = ReactFormal.Input;
+var FormalTextarea      = ReactFormal.Textarea;
+var FormalOptionGroup   = ReactFormal.OptionGroup;
+var FormalOption        = ReactFormal.Option;
+var FormalRadio         = ReactFormal.Radio;
+var FormalCheckbox      = ReactFormal.Checkbox;
 
-var FormalInputDuo = require( 'react-formal' ).Input;
+
+
 
 console.log( "Basic Examples" );
 
@@ -59,17 +66,21 @@ var BasicForm = React.createClass({
                     title = "A Textarea"
                 />
 
-                <FormalInput
-                    type    = "date"
-                    name    = "basicDate"
-                    title   = "Date Field"
-                />
 
-                <FormalInput
-                    type    = "email"
-                    name    = "basicEmail"
-                    title   = "Email Field"
-                />
+                <FormalOptionGroup
+                    type	    = "select"
+                    name	    = "state"
+                    title	    = "State"
+                    options     = { states }
+                >
+
+                    <FormalOption
+                        value	= " "
+                        title	= "-- Select One --"
+                    />
+
+                </FormalOptionGroup>
+
 
                 <button
                     type		= "submit"

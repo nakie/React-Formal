@@ -1,5 +1,9 @@
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 var React = require('react');
 
 var FrmCheckbox = require('./Checkbox');
@@ -24,12 +28,6 @@ var OptionGroup = React.createClass({
         }
     }, // END function getTitle()
 
-    changeValue: function changeValue(e) {
-
-        if (typeof this.props.changeValue != 'undefined') {
-            this.props.changeValue(e.target.value);
-        }
-    },
 
     renderOptions: function renderOptions() {
 
@@ -43,14 +41,18 @@ var OptionGroup = React.createClass({
         }
 
         if (this.props.type == "select") {
+            var _props = this.props,
+                className = _props.className,
+                helpText = _props.helpText,
+                options = _props.options,
+                props = _objectWithoutProperties(_props, ['className', 'helpText', 'options']);
 
             return React.createElement(
                 'select',
-                {
+                _extends({
                     name: this.props.name,
-                    disabled: this.props.disabled,
-                    onChange: this.changeValue
-                },
+                    disabled: this.props.disabled
+                }, props),
                 this.props.children,
                 propOptions
             );
@@ -110,7 +112,8 @@ var OptionGroup = React.createClass({
 
     render: function render() {
 
-        var className = 'optionGroup' + (this.props.className ? ' ' + this.props.className : '');
+        // Set a specific className for input group
+        var className = 'inputGroup' + (className ? ' ' + this.props.className : '') + (this.props.required ? ' required' : '');
 
         return React.createElement(
             'div',

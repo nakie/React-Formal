@@ -21,13 +21,6 @@ var OptionGroup = React.createClass({
 
 	}, // END function getTitle()
 
-    changeValue: function( e ){
-
-        if( typeof( this.props.changeValue ) != 'undefined' ){
-            this.props.changeValue( e.target.value );
-        }
-
-    },
 
 	renderOptions: function( ){
 
@@ -42,12 +35,14 @@ var OptionGroup = React.createClass({
 
 		if( this.props.type == "select" ){
 
+            let{ className, helpText, options, ...props } = this.props;
+
 			return(
 
 				<select
                     name        = { this.props.name }
                     disabled    = { this.props.disabled }
-                    onChange    = { this.changeValue }
+                    { ...props }
                 >
 					
 				    { this.props.children }
@@ -121,8 +116,10 @@ var OptionGroup = React.createClass({
   
 	render: function() {
 
-        var className = 'optionGroup' +
-            ( this.props.className ?  ' ' + this.props.className: '' );
+        // Set a specific className for input group
+        var className = 'inputGroup' +
+            ( className ?  ' ' + this.props.className: '' ) +
+            ( this.props.required ?  ' required': '' );
 
 		return (
 
