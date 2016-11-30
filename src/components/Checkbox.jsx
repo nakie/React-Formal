@@ -21,6 +21,8 @@ var Checkbox = React.createClass({
 
     render() {
 
+        let{ className, title, helpText, ...props } = this.props;
+
         return (
 
 			<div className="checkbox">
@@ -30,6 +32,7 @@ var Checkbox = React.createClass({
                     <input
                         type	        = { 'checkbox' }
                         name	        = { this.props.name }
+                        { ...props }
                     />
                     { this.toggle() }
                     { this.props.title }
