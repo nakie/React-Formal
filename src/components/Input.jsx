@@ -19,6 +19,12 @@ var suffix = {
 
 var MyInput = React.createClass({
 
+    getInitialState: function(){
+        return {
+            value: this._getValue()
+        }
+    },
+
     _getID: function() {
 
         // if ID is explicitly stated use it
@@ -58,9 +64,37 @@ var MyInput = React.createClass({
 
     }, // END _helpText()
 
+    _getValue: function(){
+
+        if( typeof(this.props.value) != "undefined" ){
+            return this.props.value;
+        } else {
+            return '';
+        }
+
+    },
+
+    _valueChange: function( e ){
+
+        this.setState( { 'value': e.target.value });
+
+        if( typeof( this.props.onChange ) == 'function' ){
+
+            this.props.onChange( e );
+
+        }
+
+        if( typeof( this.props.validate ) == 'function' ){
+
+            this.props.validate( e );
+
+        }
+
+    },
+
 	render: function(){
 
-		let{ className, helpText, showLabel, ...props } = this.props;
+		let{ className, helpText, showLabel, value, onChange, validate, ...props } = this.props;
 
 		// Set a specific className for input group
 		var groupClass = 'inputGroup' +
@@ -93,14 +127,18 @@ var MyInput = React.createClass({
 			    <input
                     id          = { elementID }
                     name        = { this.props.name }
+                    onChange    = { this._valueChange }
+                    value       = { this.state.value }
                     { ...props }
                 />
 			    { this._errorMessage() }
                 { this._helpText() }
+
 			</div>
 
 		);
 	}
+
 });
 
 module.exports = MyInput;

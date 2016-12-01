@@ -26,6 +26,12 @@ var MyInput = React.createClass({
     displayName: 'MyInput',
 
 
+    getInitialState: function getInitialState() {
+        return {
+            value: this._getValue()
+        };
+    },
+
     _getID: function _getID() {
 
         // if ID is explicitly stated use it
@@ -72,12 +78,39 @@ var MyInput = React.createClass({
         return helpText;
     }, // END _helpText()
 
+    _getValue: function _getValue() {
+
+        if (typeof this.props.value != "undefined") {
+            return this.props.value;
+        } else {
+            return '';
+        }
+    },
+
+    _valueChange: function _valueChange(e) {
+
+        this.setState({ 'value': e.target.value });
+
+        if (typeof this.props.onChange == 'function') {
+
+            this.props.onChange(e);
+        }
+
+        if (typeof this.props.validate == 'function') {
+
+            this.props.validate(e);
+        }
+    },
+
     render: function render() {
         var _props = this.props,
             className = _props.className,
             helpText = _props.helpText,
             showLabel = _props.showLabel,
-            props = _objectWithoutProperties(_props, ['className', 'helpText', 'showLabel']);
+            value = _props.value,
+            onChange = _props.onChange,
+            validate = _props.validate,
+            props = _objectWithoutProperties(_props, ['className', 'helpText', 'showLabel', 'value', 'onChange', 'validate']);
 
         // Set a specific className for input group
 
@@ -109,12 +142,15 @@ var MyInput = React.createClass({
             }),
             React.createElement('input', _extends({
                 id: elementID,
-                name: this.props.name
+                name: this.props.name,
+                onChange: this._valueChange,
+                value: this.state.value
             }, props)),
             this._errorMessage(),
             this._helpText()
         );
     }
+
 });
 
 module.exports = MyInput;
