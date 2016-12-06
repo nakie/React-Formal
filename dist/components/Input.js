@@ -6,6 +6,8 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var React = require('react');
 
+var Validate = require('../validate');
+
 var MyLabel = require('./Label');
 
 var suffix = {
@@ -29,6 +31,14 @@ var MyInput = React.createClass({
     getInitialState: function getInitialState() {
         return {
             value: this._getValue()
+        };
+    },
+
+    getDefaultProps: function getDefaultProps() {
+
+        return {
+            type: 'text'
+
         };
     },
 
@@ -91,12 +101,20 @@ var MyInput = React.createClass({
 
         this.setState({ 'value': e.target.value });
 
+        console.log(this.state.value);
+
         if (typeof this.props.onChange == 'function') {
 
+            // console.log( "onChange" );
             this.props.onChange(e);
         }
 
         if (typeof this.props.validate == 'function') {
+
+            console.log("rule: " + this.props.rules);
+            Validate.field(this.props.rules);
+
+            // console.log( "validate" );
 
             this.props.validate(e);
         }
@@ -107,10 +125,10 @@ var MyInput = React.createClass({
             className = _props.className,
             helpText = _props.helpText,
             showLabel = _props.showLabel,
-            value = _props.value,
             onChange = _props.onChange,
             validate = _props.validate,
-            props = _objectWithoutProperties(_props, ['className', 'helpText', 'showLabel', 'value', 'onChange', 'validate']);
+            rules = _props.rules,
+            props = _objectWithoutProperties(_props, ['className', 'helpText', 'showLabel', 'onChange', 'validate', 'rules']);
 
         // Set a specific className for input group
 
@@ -136,13 +154,12 @@ var MyInput = React.createClass({
             'div',
             { className: groupClass },
             React.createElement(MyLabel, {
-                showLabel: this.props.showLabel,
+                showLabel: showLabel,
                 name: elementID,
-                title: this.props.title
+                title: props.title
             }),
             React.createElement('input', _extends({
                 id: elementID,
-                name: this.props.name,
                 onChange: this._valueChange,
                 value: this.state.value
             }, props)),

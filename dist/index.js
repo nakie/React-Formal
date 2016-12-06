@@ -28,6 +28,10 @@ var _Textarea = require('./components/Textarea');
 
 var _Textarea2 = _interopRequireDefault(_Textarea);
 
+var _validate = require('./validate');
+
+var _validate2 = _interopRequireDefault(_validate);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = {

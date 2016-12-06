@@ -1,6 +1,8 @@
 "use strict";
 var React = require( 'react' );
 
+var Validate = require( '../validate' );
+
 var MyLabel = require( './Label' );
 
 var suffix = {
@@ -23,6 +25,14 @@ var MyInput = React.createClass({
         return {
             value: this._getValue()
         }
+    },
+
+    getDefaultProps: function() {
+
+        return {
+            type: 'text',
+
+        };
     },
 
     _getID: function() {
@@ -76,15 +86,23 @@ var MyInput = React.createClass({
 
     _valueChange: function( e ){
 
-        this.setState( { 'value': e.target.value });
+        this.setState({ 'value': e.target.value });
+
+        console.log( this.state.value );
 
         if( typeof( this.props.onChange ) == 'function' ){
 
+            // console.log( "onChange" );
             this.props.onChange( e );
 
         }
 
         if( typeof( this.props.validate ) == 'function' ){
+
+            console.log( "rule: " + this.props.rules );
+            Validate.field( this.props.rules );
+
+            // console.log( "validate" );
 
             this.props.validate( e );
 
@@ -94,7 +112,7 @@ var MyInput = React.createClass({
 
 	render: function(){
 
-		let{ className, helpText, showLabel, value, onChange, validate, ...props } = this.props;
+		let{ className, helpText, showLabel, onChange, validate, rules, ...props } = this.props;
 
 		// Set a specific className for input group
 		var groupClass = 'inputGroup' +
@@ -120,13 +138,12 @@ var MyInput = React.createClass({
 
 			<div className = { groupClass } >
                 <MyLabel
-                    showLabel 	= { this.props.showLabel }
+                    showLabel 	= { showLabel }
                     name 		= { elementID }
-                    title 		= { this.props.title }
+                    title 		= { props.title }
                 />
 			    <input
                     id          = { elementID }
-                    name        = { this.props.name }
                     onChange    = { this._valueChange }
                     value       = { this.state.value }
                     { ...props }
