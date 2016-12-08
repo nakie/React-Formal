@@ -27,6 +27,10 @@ var Rules = {
         return value.length > 0;
         // This does not properly handle Select / Checkbox / Radio
         // and will need some expanding
+    },
+
+    email: function( value, callback ){
+        return
     }
 }
 
