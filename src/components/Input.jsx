@@ -124,7 +124,8 @@ var MyInput = React.createClass({
 		// Set a specific className for input group
 		var groupClass = 'inputGroup' +
             ( className ?  ' ' + this.props.className: '' ) +
-            ( this.props.required ?  ' required': '' );
+            ( this.props.required ?  ' required': '' ) +
+            ( error ? ' has-error' : '' );
 
         // Get provided or generated ID for input element
         var elementID = this._getID();
