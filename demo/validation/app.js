@@ -68,8 +68,8 @@ var BasicForm = React.createClass({
                     validate = { this.validate }
                     rules    = 'required'
                     onChange = { this.handleChange }
+                    error    = "There is a problem"
                 />
-
 
                 <button
                     type		= "submit"
