@@ -7,7 +7,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 var React = require('react');
 
 var Validate = require('../validate');
-
 var MyLabel = require('./Label');
 
 var suffix = {
@@ -70,7 +69,11 @@ var MyInput = React.createClass({
             errorText
         );
 
-        return null;
+        if (Boolean(this.props.error)) {
+            return this.props.error;
+        } else {
+            return null;
+        }
     }, // END _errorMessage()
 
     _helpText: function _helpText() {
@@ -99,9 +102,9 @@ var MyInput = React.createClass({
 
     _valueChange: function _valueChange(e) {
 
-        this.setState({ 'value': e.target.value });
+        var curValue = e.target.value;
 
-        console.log(this.state.value);
+        this.setState({ 'value': curValue });
 
         if (typeof this.props.onChange == 'function') {
 
@@ -109,14 +112,16 @@ var MyInput = React.createClass({
             this.props.onChange(e);
         }
 
-        if (typeof this.props.validate == 'function') {
+        //if( typeof( this.props.validate ) == 'function' ){
+        if (Boolean(this.props.validate)) {
 
-            console.log("rule: " + this.props.rules);
-            Validate.field(this.props.rules);
+            var result = Validate.field(this.props.rules, curValue);
 
-            // console.log( "validate" );
+            console.log("validate result = " + result);
 
-            this.props.validate(e);
+            if (typeof this.props.validate == 'function') {
+                this.props.validate(e);
+            }
         }
     },
 
@@ -128,7 +133,8 @@ var MyInput = React.createClass({
             onChange = _props.onChange,
             validate = _props.validate,
             rules = _props.rules,
-            props = _objectWithoutProperties(_props, ['className', 'helpText', 'showLabel', 'onChange', 'validate', 'rules']);
+            error = _props.error,
+            props = _objectWithoutProperties(_props, ['className', 'helpText', 'showLabel', 'onChange', 'validate', 'rules', 'error']);
 
         // Set a specific className for input group
 

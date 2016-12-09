@@ -11,7 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --progress -d --config webpack.dev.config.js",
     "prod": "babel ./src/ -d ./dist/",
-    "demo": "webpack-dev-server --progress --color --config ./demo/webpack.config.js --content-base demo"
+    "demo-server": "webpack-dev-server --progress --color --config ./demo/webpack.config.js --content-base demo",
+    "demo": "npm run prod | npm run demo-server"
   },
   "author": "Nathan Crews",
   "license": "MIT",

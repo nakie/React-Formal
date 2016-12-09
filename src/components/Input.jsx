@@ -2,8 +2,7 @@
 var React = require( 'react' );
 
 var Validate = require( '../validate' );
-
-var MyLabel = require( './Label' );
+var MyLabel  = require( './Label' );
 
 var suffix = {
 	default:  "Txt",
@@ -57,9 +56,14 @@ var MyInput = React.createClass({
 
         var errorText = '';
 
-        var errorMessage =  <span className='validation-error'>{ errorText }</span>
+        var errorMessage =  <span className='validation-error' >{ errorText }</span>
 
-        return null;
+        if( Boolean(this.props.error) ){
+            return this.props.error;
+        } else {
+            return null;
+        }
+
     }, // END _errorMessage()
 
     _helpText: function(){
@@ -86,9 +90,10 @@ var MyInput = React.createClass({
 
     _valueChange: function( e ){
 
-        this.setState({ 'value': e.target.value });
+        var curValue = e.target.value;
 
-        console.log( this.state.value );
+        this.setState({ 'value': curValue  });
+
 
         if( typeof( this.props.onChange ) == 'function' ){
 
@@ -97,14 +102,16 @@ var MyInput = React.createClass({
 
         }
 
-        if( typeof( this.props.validate ) == 'function' ){
+        //if( typeof( this.props.validate ) == 'function' ){
+        if( Boolean( this.props.validate ) ){
 
-            console.log( "rule: " + this.props.rules );
-            Validate.field( this.props.rules );
+            var result = Validate.field( this.props.rules, curValue );
 
-            // console.log( "validate" );
+            console.log( "validate result = " + result );
 
-            this.props.validate( e );
+            if( typeof( this.props.validate ) == 'function' ) {
+                this.props.validate(e);
+            }
 
         }
 
@@ -112,7 +119,7 @@ var MyInput = React.createClass({
 
 	render: function(){
 
-		let{ className, helpText, showLabel, onChange, validate, rules, ...props } = this.props;
+		let{ className, helpText, showLabel, onChange, validate, rules, error, ...props } = this.props;
 
 		// Set a specific className for input group
 		var groupClass = 'inputGroup' +
