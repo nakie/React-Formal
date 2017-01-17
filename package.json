@@ -27,6 +27,7 @@
     "react-dom": "^15.4.0",
     "validator": "^6.2.0",
     "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2",
     "webpack-node-externals": "^1.5.4"
   }
 }

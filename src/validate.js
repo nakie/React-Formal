@@ -20,6 +20,7 @@ var Messages =  {
     date:           "Please enter a valid date.",
     before:         "Please enter a valid date before {0}.",
     after:          "Please enter a valid date after {0}.",
+    alpha:          "Pleases enter only Alpha characters"
 };
 
 
@@ -29,10 +30,11 @@ var Rules = {
         // return value.length > 0;
         // This does not properly handle Select / Checkbox / Radio
         // and will need some expanding
+        //TODO Expand to include select/ checkbox/radio buttons
 
         // using the validator library to check for empty strings
 
-        console.log( "value: " + value );
+        // console.log( "value: " + value );
 
         return !validator.isEmpty( value );
     },
@@ -44,15 +46,18 @@ var Rules = {
 
     // check if the string's length is larger than specified
     minlength: function( value, callback ){
+        //TODO properly Call isLength
         return validator.isLength( value );
     },
 
     //check if the string's length is less than specified
     maxlength: function( value, callback ){
+        //TODO properly call isLength()
         return validator.isLength( value );
     },
-    //check if the string's length alls in a range
+    //check if the string's length falls in a range
     rangelength: function( value, callback ){
+        //TODO properly call isLength()
         return validator.isLength( value );
     },
     min: function( value, callback ){},
@@ -98,7 +103,8 @@ var Validate = {
     run: function( rules, value, callback ){
         // console.log( rules );
 
-        var valid = true
+        // var valid = true;
+        var errors = [];
 
         if( typeof rules === 'string' ) {
             rules = rules.split( ' ' );
@@ -106,9 +112,33 @@ var Validate = {
 
         // console.log( rules);
         for( var i = 0; i < rules.length; i++ ){
-            console.log( "- " + rules[ i ] + ": " + Rules[ rules[ i ] ]( value, callback ) );
+
+            var curError = {};
+            // console.log( "- " + rules[ i ] + ": " + Rules[ rules[ i ] ]( value, callback ) );
+
+            // console.log( Rules[ rules[ i ] ]( value, callback ) );
+            if( !Rules[ rules[ i ] ]( value, callback ) ) {
+
+                curError.rule = rules[ i ];
+                curError.message = Messages[ rules[i] ];
+
+                errors.push( curError );
+            }
 
         }
+
+        // errors - An array of errors from the validation object. If the length > 0, the form failed validation
+        //
+        // This array will contain javascript objects with up to four properties:
+        //     - id: The id attribute of the form element
+        // - name: The name attribute of the form element
+        // - message: The error message to display
+        // - messages: The error message of every failed validation of the given field to display
+        // - rule: The rule that prompted this error
+        //
+        // event - If the browser supports it, the onsubmit event is passed in.
+
+        return errors;
 
     },
 

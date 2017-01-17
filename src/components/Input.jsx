@@ -85,7 +85,6 @@ var MyInput = React.createClass({
         } else {
             return '';
         }
-
     },
 
     _valueChange: function( e ){
@@ -107,15 +106,24 @@ var MyInput = React.createClass({
 
             var result = Validate.field( this.props.rules, curValue );
 
-            console.log( "validate result = " + result );
+            // console.log( "validate result = " + result );
+            console.log( result );
+
+            /**
+             * TODO update local state and create return object
+             *  with error result AND element/input name and ID
+             *  pass this on to this.props.validate callback along
+             *  with the event.
+             */
+
+
 
             if( typeof( this.props.validate ) == 'function' ) {
-                this.props.validate(e);
+                this.props.validate( e );
             }
-
         }
 
-    },
+    }, //- END function _valueChange
 
 	render: function(){
 

@@ -6,13 +6,12 @@ var ReactFormal = require( 'react-formal' );
 
 var FormalInput = ReactFormal.Input;
 
-var FormalInputDuo = require( 'react-formal' ).Input;
-
-var vDater = ReactFormal.validator;
+// var FormalInputDuo = require( 'react-formal' ).Input;
+// var vDater = ReactFormal.validator;
 
 console.log( "Validation Examples" );
 
-var BasicForm = React.createClass({
+var ValidateForm = React.createClass({
 
     getInitialState: function(){
         return {
@@ -66,7 +65,7 @@ var BasicForm = React.createClass({
                     title    = "Text Field"
                     helpText = "HI from HELP"
                     validate = { this.validate }
-                    rules    = 'required'
+                    rules    = 'required alpha'
                     onChange = { this.handleChange }
                     error    = "There is a problem"
                 />
@@ -86,7 +85,7 @@ var BasicForm = React.createClass({
 var container = document.getElementById( 'demoContainer' );
 if( demoContainer != null ){
     ReactDOM.render(
-        <BasicForm />,
+        <ValidateForm />,
         demoContainer
     );
 }

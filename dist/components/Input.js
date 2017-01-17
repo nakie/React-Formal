@@ -118,12 +118,13 @@ var MyInput = React.createClass({
             var result = Validate.field(this.props.rules, curValue);
 
             console.log("validate result = " + result);
+            console.log(result);
 
             if (typeof this.props.validate == 'function') {
                 this.props.validate(e);
             }
         }
-    },
+    }, //- END function _valueChange
 
     render: function render() {
         var _props = this.props,
