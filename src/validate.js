@@ -41,7 +41,13 @@ var Rules = {
 
     //check if the string is an email.
     email: function( value, callback ){
-        return validator.isEmail( value );
+
+        if( value != '' ){
+            return validator.isEmail( value );
+        }
+
+        return true;
+
     },
 
     // check if the string's length is larger than specified
@@ -77,7 +83,12 @@ var Rules = {
 
     //check if the string contains only letters (a-zA-Z).
     alpha: function( value, callback ){
-        return validator.isAlpha( value );
+        if( value != '' ){
+            return validator.isAlpha( value );
+        }
+
+        return true;
+
     },
 
     //check if the string contains only letters and numbers
@@ -144,6 +155,7 @@ var Validate = {
 
     // simply an alias for run().
     field: function( rules, value, callback ){
+
         return this.run( rules, value );
     }
 

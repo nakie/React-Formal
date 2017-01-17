@@ -24,12 +24,12 @@ var OptionGroup = React.createClass({
 
 	renderOptions: function( ){
 
-	    //var  propOptions = this.generateOptions();
+	    //var  propOptions = this.generateOption();
         var propOptions = [];
 
         if( typeof( this.props.options ) != 'undefined' ){
             for( var key in this.props.options ){
-                propOptions.push( this.generateOptions( key, this.props.options[ key ] ) );
+                propOptions.push( this.generateOption( key, this.props.options[ key ] ) );
             }
         }
 
@@ -72,7 +72,7 @@ var OptionGroup = React.createClass({
 
 	}, // END function renderOptions()
 
-    generateOptions: function( value, title ){
+    generateOption: function( value, title ){
 
         switch( this.props.type ) {
 
@@ -112,7 +112,7 @@ var OptionGroup = React.createClass({
 
         } // END switch ( this.props.type)
 
-    }, // END generateOptions() options
+    }, // END generateOption() options
   
 	render: function() {
 

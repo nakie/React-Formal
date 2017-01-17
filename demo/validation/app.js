@@ -30,10 +30,13 @@ var ValidateForm = React.createClass({
         //console.log( this.state );
     },
 
-    validate: function( obj ){
+    validate: function( errorObj, event ){
 
         console.log( "Validation Called" );
-        console.log( obj );
+        console.log( errorObj );
+        console.log( event );
+
+        // console.log( obj );
 
         // Do Validation here or inside Input components??
         // Te following will be used to pass Validation back up to the
@@ -67,7 +70,7 @@ var ValidateForm = React.createClass({
                     validate = { this.validate }
                     rules    = 'required alpha'
                     onChange = { this.handleChange }
-                    error    = "There is a problem"
+                    error    = "Initial Error Provided"
                 />
 
                 <button

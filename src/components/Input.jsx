@@ -22,7 +22,8 @@ var MyInput = React.createClass({
 
     getInitialState: function(){
         return {
-            value: this._getValue()
+            value: this._getValue(),
+            errors: []
         }
     },
 
@@ -43,6 +44,7 @@ var MyInput = React.createClass({
 
         // Generate ID using element name if none provided
         var elementID = '';
+
         if( suffix.hasOwnProperty( this.props.type )){
             elementID = this.props.name + suffix[ this.props.type ];
         }else{
@@ -50,16 +52,48 @@ var MyInput = React.createClass({
         }
 
         return elementID;
+
     }, // END _getID()
 
     _errorMessage: function(){
 
-        var errorText = '';
+        // var errorText = '';
 
-        var errorMessage =  <span className='validation-error' >{ errorText }</span>
+        //Initial Error provided to Component
+        var initialError = this.props.error;
 
-        if( Boolean(this.props.error) ){
-            return this.props.error;
+        // Errors generated from Input validation
+        var validationErrors = this.state.errors;
+
+        // Errors that will be returned from component
+        var errorMessages = [];
+
+        // Create initial Error Markup
+        if( Boolean( initialError ) ) {
+            var errorMessage =  <span className='validation-error' >{ initialError }</span>
+
+            errorMessages.push( errorMessage );
+        }
+
+        // Create Error Markup for any validation errors
+        if( validationErrors.length > 0 ) {
+
+            for( var i = 0; i < validationErrors.length; i++ ) {
+                /**
+                 * validationErrors[i] = {
+                 *      rule: Name of rule that triggered error
+                 *      message: default error message for rule
+                 * }
+                 *
+                 */
+                var errorMessage =  <span className='validation-error' >{ validationErrors[i].message }</span>
+                errorMessages.push( errorMessage );
+            }
+
+        }
+
+        if( Boolean( this.props.error ) || this.state.errors.length > 0 ){
+            return errorMessages;
         } else {
             return null;
         }
@@ -80,7 +114,7 @@ var MyInput = React.createClass({
 
     _getValue: function(){
 
-        if( typeof(this.props.value) != "undefined" ){
+        if( typeof( this.props.value ) != "undefined" ){
             return this.props.value;
         } else {
             return '';
@@ -91,7 +125,7 @@ var MyInput = React.createClass({
 
         var curValue = e.target.value;
 
-        this.setState({ 'value': curValue  });
+        var newState = { 'value': curValue };
 
 
         if( typeof( this.props.onChange ) == 'function' ){
@@ -106,8 +140,12 @@ var MyInput = React.createClass({
 
             var result = Validate.field( this.props.rules, curValue );
 
+            newState.errors = result;
+
+
+
             // console.log( "validate result = " + result );
-            console.log( result );
+            // console.log( result );
 
             /**
              * TODO update local state and create return object
@@ -116,12 +154,19 @@ var MyInput = React.createClass({
              *  with the event.
              */
 
-
-
             if( typeof( this.props.validate ) == 'function' ) {
-                this.props.validate( e );
+
+                var errorObj = {
+                    errors: result,
+                    name: this.props.name,
+                    id: this._getID()
+                }
+
+                this.props.validate( errorObj, e );
             }
         }
+
+        this.setState( newState );
 
     }, //- END function _valueChange
 
