@@ -168,7 +168,7 @@ var OptionGroup = React.createClass({
 
         return React.createElement(
             'div',
-            { className: className },
+            { className: groupClass },
             this.getTitle(),
             this.renderOptions(),
             this._errorMessage(),

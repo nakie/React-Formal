@@ -160,7 +160,7 @@ var OptionGroup = React.createClass({
 
 		return (
 
-			<div className={ className } >
+			<div className={ groupClass } >
 
 				{ this.getTitle() }
 
