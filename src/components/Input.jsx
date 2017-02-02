@@ -178,9 +178,9 @@ var MyInput = React.createClass({
 		let{ className, helpText, showLabel, onChange, validate, rules, error, ...props } = this.props;
 
 		// Set a specific className for input group
-		var groupClass = 'inputGroup' +
-            ( Boolean( className ) ?  ' ' + this.props.className: '' ) +
-            ( Boolean( this.props.required ) ?  ' required': '' ) +
+		var groupClass = 'inputGroup ' + props.type +
+            ( Boolean( className ) ?  ' ' + className : '' ) +
+            ( Boolean( this.props.required ) ?  ' required' : '' ) +
             ( Boolean( error ) ? ' error' : '' );
 
         // Get provided or generated ID for input element

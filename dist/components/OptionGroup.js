@@ -149,7 +149,21 @@ var OptionGroup = React.createClass({
     render: function render() {
 
         // Set a specific className for input group
-        var className = 'optionGroup' + (className ? ' ' + this.props.className : '') + (this.props.required ? ' required' : '');
+        var _props2 = this.props,
+            className = _props2.className,
+            helpText = _props2.helpText,
+            showLabel = _props2.showLabel,
+            onChange = _props2.onChange,
+            validate = _props2.validate,
+            rules = _props2.rules,
+            error = _props2.error,
+            props = _objectWithoutProperties(_props2, ['className', 'helpText', 'showLabel', 'onChange', 'validate', 'rules', 'error']);
+
+        // var className = 'optionGroup' +
+        //     ( className ?  ' ' + this.props.className: '' ) +
+        //     ( this.props.required ?  ' required': '' );
+
+        var groupClass = 'inputGroup ' + props.type + (Boolean(className) ? ' ' + className : '') + (Boolean(this.props.required) ? ' required' : '') + (Boolean(error) ? ' error' : '');
 
         return React.createElement(
             'div',
