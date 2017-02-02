@@ -29,6 +29,42 @@ var OptionGroup = React.createClass({
     }, // END function getTitle()
 
 
+    _helpText: function _helpText() {
+
+        var helpText = null;
+
+        if (typeof this.props.helpText !== 'undefined') {
+            helpText = React.createElement(
+                'p',
+                { className: 'help-block' },
+                this.props.helpText
+            );
+        }
+
+        return helpText;
+    }, // END _helpText()
+
+    _errorMessage: function _errorMessage() {
+
+        //Initial Error provided to Component
+        var initialError = this.props.error;
+
+        var errorMessage = null;
+
+        // Create Error Markup
+        if (Boolean(initialError)) {
+            errorMessage = React.createElement(
+                'span',
+                { className: 'validation-error' },
+                initialError
+            );
+
+            // errorMessages.push( errorMessage );
+        }
+
+        return errorMessage;
+    }, // END _errorMessage()
+
     renderOptions: function renderOptions() {
 
         //var  propOptions = this.generateOption();
@@ -119,7 +155,9 @@ var OptionGroup = React.createClass({
             'div',
             { className: className },
             this.getTitle(),
-            this.renderOptions()
+            this.renderOptions(),
+            this._errorMessage(),
+            this._helpText()
         );
     } // END function render()
 

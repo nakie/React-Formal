@@ -69,47 +69,47 @@ var MyInput = React.createClass({
         var initialError = this.props.error;
 
         // Errors generated from Input validation
-        var validationErrors = this.state.errors;
+        // var validationErrors = this.state.errors;
 
+        var errorMessage = null;
         // Errors that will be returned from component
-        var errorMessages = [];
+        // var errorMessages = [];
 
         // Create initial Error Markup
         if (Boolean(initialError)) {
-            var errorMessage = React.createElement(
+            errorMessage = React.createElement(
                 'span',
                 { className: 'validation-error' },
                 initialError
             );
 
-            errorMessages.push(errorMessage);
+            // errorMessages.push( errorMessage );
         }
 
-        // Create Error Markup for any validation errors
-        if (validationErrors.length > 0) {
+        return errorMessage;
 
-            for (var i = 0; i < validationErrors.length; i++) {
-                /**
-                 * validationErrors[i] = {
-                 *      rule: Name of rule that triggered error
-                 *      message: default error message for rule
-                 * }
-                 *
-                 */
-                var errorMessage = React.createElement(
-                    'span',
-                    { className: 'validation-error' },
-                    validationErrors[i].message
-                );
-                errorMessages.push(errorMessage);
-            }
-        }
+        // // Create Error Markup for any validation errors
+        // if( validationErrors.length > 0 ) {
+        //
+        //     for( var i = 0; i < validationErrors.length; i++ ) {
+        //         /**
+        //          * validationErrors[i] = {
+        //          *      rule: Name of rule that triggered error
+        //          *      message: default error message for rule
+        //          * }
+        //          *
+        //          */
+        //         var errorMessage =  <span className='validation-error' >{ validationErrors[i].message }</span>
+        //         errorMessages.push( errorMessage );
+        //     }
+        //
+        // }
 
-        if (Boolean(this.props.error) || this.state.errors.length > 0) {
-            return errorMessages;
-        } else {
-            return null;
-        }
+        // if( Boolean( this.props.error ) || this.state.errors.length > 0 ){
+        //     return errorMessages;
+        // } else {
+        //     return null;
+        // }
     }, // END _errorMessage()
 
     _helpText: function _helpText() {

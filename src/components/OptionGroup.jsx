@@ -49,7 +49,7 @@ var OptionGroup = React.createClass({
         }
 
         return errorMessage;
-        
+
     }, // END _errorMessage()
 
 	renderOptions: function( ){
