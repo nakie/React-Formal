@@ -22,6 +22,63 @@ var OptionGroup = React.createClass({
 	}, // END function getTitle()
 
 
+    _helpText: function(){
+
+        var helpText = null;
+
+        if( typeof this.props.helpText !== 'undefined' ){
+            helpText = <p className="help-block" >{ this.props.helpText }</p>;
+        }
+
+        return helpText;
+
+    }, // END _helpText()
+
+    _errorMessage: function(){
+
+        // var errorText = '';
+
+        //Initial Error provided to Component
+        var initialError = this.props.error;
+
+        // Errors generated from Input validation
+        var validationErrors = this.state.errors;
+
+        // Errors that will be returned from component
+        var errorMessages = [];
+
+        // Create initial Error Markup
+        if( Boolean( initialError ) ) {
+            var errorMessage =  <span className='validation-error' >{ initialError }</span>
+
+            errorMessages.push( errorMessage );
+        }
+
+        // Create Error Markup for any validation errors
+        if( validationErrors.length > 0 ) {
+
+            for( var i = 0; i < validationErrors.length; i++ ) {
+                /**
+                 * validationErrors[i] = {
+                 *      rule: Name of rule that triggered error
+                 *      message: default error message for rule
+                 * }
+                 *
+                 */
+                var errorMessage =  <span className='validation-error' >{ validationErrors[i].message }</span>
+                errorMessages.push( errorMessage );
+            }
+
+        }
+
+        if( Boolean( this.props.error ) || this.state.errors.length > 0 ){
+            return errorMessages;
+        } else {
+            return null;
+        }
+
+    }, // END _errorMessage()
+
 	renderOptions: function( ){
 
 	    //var  propOptions = this.generateOption();
@@ -113,7 +170,7 @@ var OptionGroup = React.createClass({
         } // END switch ( this.props.type)
 
     }, // END generateOption() options
-  
+
 	render: function() {
 
         // Set a specific className for input group
@@ -128,6 +185,9 @@ var OptionGroup = React.createClass({
 				{ this.getTitle() }
 
 				{ this.renderOptions() }
+
+                { this._errorMessage() }
+                { this._helpText() }
 
 			</div>
 
