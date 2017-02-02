@@ -163,9 +163,7 @@ var OptionGroup = React.createClass({
 			<div className={ groupClass } >
 
 				{ this.getTitle() }
-
 				{ this.renderOptions() }
-
                 { this._errorMessage() }
                 { this._helpText() }
 
