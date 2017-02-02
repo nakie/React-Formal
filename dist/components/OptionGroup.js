@@ -78,10 +78,10 @@ var OptionGroup = React.createClass({
 
         if (this.props.type == "select") {
             var _props = this.props,
-                _className = _props.className,
+                className = _props.className,
                 helpText = _props.helpText,
                 options = _props.options,
-                _error = _props.error,
+                error = _props.error,
                 props = _objectWithoutProperties(_props, ['className', 'helpText', 'options', 'error']);
 
             return React.createElement(
@@ -150,7 +150,15 @@ var OptionGroup = React.createClass({
     render: function render() {
 
         // Set a specific className for input group
-        // let{ className, helpText, showLabel, onChange, validate, rules, error, ...props } = this.props;
+        var _props2 = this.props,
+            className = _props2.className,
+            helpText = _props2.helpText,
+            showLabel = _props2.showLabel,
+            onChange = _props2.onChange,
+            validate = _props2.validate,
+            rules = _props2.rules,
+            error = _props2.error,
+            props = _objectWithoutProperties(_props2, ['className', 'helpText', 'showLabel', 'onChange', 'validate', 'rules', 'error']);
 
         // var className = 'optionGroup' +
         //     ( className ?  ' ' + this.props.className: '' ) +

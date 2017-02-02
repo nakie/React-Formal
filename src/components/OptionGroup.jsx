@@ -147,7 +147,7 @@ var OptionGroup = React.createClass({
 	render: function() {
 
         // Set a specific className for input group
-        // let{ className, helpText, showLabel, onChange, validate, rules, error, ...props } = this.props;
+        let{ className, helpText, showLabel, onChange, validate, rules, error, ...props } = this.props;
 
         // var className = 'optionGroup' +
         //     ( className ?  ' ' + this.props.className: '' ) +
@@ -157,7 +157,6 @@ var OptionGroup = React.createClass({
             ( Boolean( className ) ?  ' ' + className : '' ) +
             ( Boolean( this.props.required ) ?  ' required' : '' ) +
             ( Boolean( error ) ? ' error' : '' );
-
 
 		return (
 
